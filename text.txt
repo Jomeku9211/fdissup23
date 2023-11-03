@@ -1,0 +1,122 @@
+const [customer, setCustomer] = useState({
+      UserName: " ",
+      FirstName: " ",
+      LastName: " ",
+      ProfileImage: " ",
+      LoweredUserName: "",
+      MobileAlias: " ",
+      IsAnonymous: "",
+      LastActivityDate: " ",
+      CompanyName: " ",
+      ContactPerson: " ",
+      Phone: " ",
+      Mobile: " ",
+      Fax: " ",
+      StreetName: "",
+      ZipCode: " ",
+      City: " ",
+      State: " ",
+      CountryId: " ",
+      Branch_Id: " ",
+      URLClientPortal: " ",
+      ReportType: " ",
+      RoleId: " ",
+      Password: " ",
+      PasswordFormat: " ",
+      PasswordSalt: " ",
+      MobilePIN: " ",
+      Email: " ",
+      LoweredEmail: "",
+      PasswordQuestion: " ",
+      PasswordAnswer: " ",
+      IsApproved: "",
+      IsLockedOut: "",
+      CreateDate: "",
+      LastLoginDate: "",
+      LastPasswordChangedDate: "",
+      LastLockoutDate: "",
+      FailedPasswordAttemptCount: " ",
+      FailedPasswordAttemptWindowStart: "",
+      FailedPasswordAnswerAttemptCount: " ",
+      FailedPasswordAnswerAttemptWindowStart: " ",
+      Comment: " ",
+      RoleName: " ",
+      LoweredRoleName: " ",
+      Description: " "
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setCustomer({ ...customer, [e.target.name]: e.target.value })
+  };
+  
+  const formData = {
+    UserName: customer.UserName,
+      FirstName: customer.FirstName,
+      LastName: customer.LastName,
+      ProfileImage: customer.ProfileImage,
+      LoweredUserName: customer.UserName.toLowerCase,
+      MobileAlias: " ",
+      IsAnonymous: "",
+      LastActivityDate: Date(),
+      CompanyName: customer.CompanyName,
+      ContactPerson: customer.ContactPerson,
+      Phone: customer.Phone,
+      Mobile: customer.Mobile,
+      Fax: customer.Fax,
+      StreetName: customer.StreetName,
+      ZipCode: customer.ZipCode,
+      City: customer.City,
+      State: customer.State,
+      CountryId: "",
+      Branch_Id: customer.Branch_Id,
+      URLClientPortal: " ",
+      ReportType: " ",
+      RoleId: " ",
+      Password: customer.Password,
+      PasswordFormat: " ",
+      PasswordSalt: " ",
+      MobilePIN: " ",
+      Email: customer.Email,
+      LoweredEmail: customer.Email.toLowerCase,
+      PasswordQuestion: " ",
+      PasswordAnswer: " ",
+      IsApproved: "",
+      IsLockedOut: "",
+      CreateDate: Date(),
+      LastLoginDate: Date(),
+      LastPasswordChangedDate: Date(),
+      LastLockoutDate: Date(),
+      FailedPasswordAttemptCount: " ",
+      FailedPasswordAttemptWindowStart: "",
+      FailedPasswordAnswerAttemptCount: " ",
+      FailedPasswordAnswerAttemptWindowStart: " ",
+      Comment: " ",
+      RoleName: " ",
+      LoweredRoleName: " ",
+      Description: " "
+    };
+
+    
+  
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .post(`${config.API_URL}/SuperClient`, formData)
+      .then((response) => {
+        if (response) {
+          setSuccess(true);
+          console.log(formData)
+        }
+        else{
+          alert(response)
+          setFailure(true);
+        }
+      }).catch(err=>{
+        console.log(`this is an catch err`,err)
+      })
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);  
+  };
